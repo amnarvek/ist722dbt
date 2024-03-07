@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: Sales level fact table. Transaction. one row per product item ordered. Details about orders, products and total price, discount, sold amount.
+    columns:
+      - name: employeekey
+        description: Dimension key for dim_employee
+      - name: customerkey
+        description: Dimension key for dim_customer
+      - name: orderkey
+        description: Dimension key for dim_product
+      - name: productkey
+        description: Dimension key for dim_product
+      - name: orderdatekey
+        description: role play Order Date Dimension key for dim_date
+      - name: quantity
+        description: Number of products ordered
+      - name: extendedpriceamount
+        description: Total price of product before discount
+      - name: discountamount
+        description: Total discount given on product
+      - name: soldamount
+        description: Amount after discount is applied
+
