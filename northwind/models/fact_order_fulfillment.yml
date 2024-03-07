@@ -28,6 +28,6 @@ models:
       - name: daysfromordertorequired
         description: the number of days before the order is required 
       - name: shippedtorequireddelta
-        description: the difference between  shipped and required. positive means shipment was late.
+        description: the difference between shipped and required. positive means shipment was late.
       - name: shippedontime
         description: yes or no was the shipment on time
