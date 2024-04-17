@@ -1,0 +1,117 @@
+version: 2
+
+sources:
+  - name: conformed
+    database: raw
+    schema: conformed
+
+    tables:
+      - name: DateDimension
+        columns:
+          - name: DateKey
+            tests:
+              - not_null
+              - unique
+
+  - name: visionflix
+    database: vision
+    schema: visionflix
+
+    tables:
+      - name: account_activity
+        columns:
+          - name: activity_id
+            tests:
+              - unique
+              - not_null
+      - name: account_billing
+        columns:
+          - name: ab_id
+            tests:
+              - unique
+              - not_null
+      - name: account_titles
+        columns:
+          - name: at_id
+            tests:
+              - unique
+              - not_null
+      - name: casting
+        columns:
+          - name: cast_people_id
+            tests:
+              - not_null
+          - name: cast_title_id
+            tests:
+              - not_null
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - cast_people_id
+                - cast_title_id
+      - name: directors
+        columns:
+          - name: director_people_id
+            tests:
+              - not_null
+          - name: director_title_id
+            tests:
+              - not_null
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - director_people_id
+                - director_title_id
+      - name: genres
+        columns:
+          - name: genre_name
+            tests:
+              - unique
+              - not_null
+      - name: people
+        columns:
+          - name: people_id
+            tests:
+              - unique
+              - not_null
+      - name: plans
+        columns:
+          - name: plan_id
+            tests:
+              - unique
+              - not_null
+      - name: title_genres
+        columns:
+          - name: tg_genre_name
+            tests:
+              - not_null
+          - name: tg_title_id
+            tests:
+              - not_null
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - tg_genre_name
+                - tg_title_id
+      - name: titles
+        columns:
+          - name: title_id
+            tests:
+              - unique
+              - not_null
+
+  - name: visionmart
+    database: vision
+    schema: visionmart
+
+    tables:
+      - name: customers
+        columns:
+          - name: customer_id
+            tests:
+              - unique
+              - not_null
+          - name: customer_email
+            tests:
+              - unique
+              - not_null
