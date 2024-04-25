@@ -115,3 +115,15 @@ sources:
             tests:
               - unique
               - not_null
+
+  - name: visiondwh
+    database: vision_dwh
+    schema: vision_dim_fact
+
+    tables:
+      - name: dim_customers
+        columns:
+          - name: customer_key
+            tests:
+              - unique
+              - not_null

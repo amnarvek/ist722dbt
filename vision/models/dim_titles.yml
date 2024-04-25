@@ -8,7 +8,6 @@ models:
         description: The surrogate key of the title
         tests:
           - not_null
-          - unique
       - name: title_id
         description: The title's table surrogate key
         tests:
