@@ -142,6 +142,28 @@ sources:
                 - customer_id
                 - artist_id
 
+  - name: visionmart
+    database: vision
+    schema: visionmart
+
+    tables:
+      - name: customers
+        columns:
+          - name: customer_id
+            tests:
+              - unique
+              - not_null
+          - name: customer_email
+            tests:
+              - unique
+              - not_null
+      - name: DateDimension
+        columns:
+          - name: DateKey
+            tests:
+              - not_null
+              - unique
+
   - name: visionbooks
     database: vision
     schema: visionbooks
@@ -197,25 +219,3 @@ sources:
                 - title_id
                 - au_id
 
-
-  - name: visionmart
-    database: vision
-    schema: visionmart
-
-    tables:
-      - name: customers
-        columns:
-          - name: customer_id
-            tests:
-              - unique
-              - not_null
-          - name: customer_email
-            tests:
-              - unique
-              - not_null
-      - name: DateDimension
-        columns:
-          - name: DateKey
-            tests:
-              - not_null
-              - unique
