@@ -4,15 +4,15 @@ models:
   - name: fact_account_bill_analysis
     description: Account Bill Analysis Fact. One row represents monthly payment for one customer
     columns:
-      - name: customer_id
+      - name: customer_key
         description: The dim customer table business key
         tests:
           - not_null
-      - name: plan_id
+      - name: plan_key
         description: The dim plan table business key
         tests:
           - not_null
-      - name: date_id
+      - name: date_key
         description: The dim date table business key
         tests:
           - not_null
