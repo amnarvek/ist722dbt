@@ -1,18 +1,6 @@
 version: 2
 
 sources:
-  - name: conformed
-    database: raw
-    schema: conformed
-
-    tables:
-      - name: DateDimension
-        columns:
-          - name: DateKey
-            tests:
-              - not_null
-              - unique
-
   - name: visionflix
     database: vision
     schema: visionflix
@@ -115,6 +103,12 @@ sources:
             tests:
               - unique
               - not_null
+      - name: DateDimension
+        columns:
+          - name: DateKey
+            tests:
+              - not_null
+              - unique
 
   - name: vision_dim_fact
     database: vision_dwh

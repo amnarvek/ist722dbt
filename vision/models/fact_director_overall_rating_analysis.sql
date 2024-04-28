@@ -2,7 +2,7 @@ with
     stg_directors as (select * from {{ source("visionflix", "directors") }}),
     stg_titles as (select * from {{ source("visionflix", "titles") }}),
     stg_title_genres as (select * from {{ source("visionflix", "title_genres") }}),
-    stg_dim_date as (select * from {{ source("conformed", "DateDimension") }})
+    stg_dim_date as (select * from {{ source("visionmart", "DateDimension") }})
 select
     {{ dbt_utils.generate_surrogate_key(["d.director_people_id"]) }}
     as fact_director_overall_rating_analysis_key,
