@@ -8,12 +8,12 @@ models:
         description: The dim people table business key where is_director is "yes"
         tests:
           - not_null
-      - name: genre_key
-        description: The dim genres table business key
-        tests:
-          - not_null
       - name: title_key
         description: The dim titles table business key
+        tests:
+          - not_null
+      - name: genre_key
+        description: The dim genres table business key
         tests:
           - not_null
       - name: release_year

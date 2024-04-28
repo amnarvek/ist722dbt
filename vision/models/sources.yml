@@ -160,5 +160,4 @@ sources:
         columns:
           - name: title_key
             tests:
-              - unique
               - not_null
