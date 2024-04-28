@@ -5,7 +5,7 @@ stg_plans as (
     select * from {{ source('visionflix','plans')}}
 ),
 stg_dim_date as (
-    select * from {{ source('conformed','DateDimension')}}
+    select * from {{ source('visionmart','DateDimension')}}
 )
 select
     {{dbt_utils.generate_surrogate_key(['a.ab_id'])}} as fact_account_bill_analysis_key,
