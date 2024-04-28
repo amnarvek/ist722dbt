@@ -115,3 +115,50 @@ sources:
             tests:
               - unique
               - not_null
+
+  - name: vision_dim_fact
+    database: vision_dwh
+    schema: vision_dim_fact
+
+    tables:
+      - name: dim_customers
+        columns:
+          - name: customer_key
+            tests:
+              - unique
+              - not_null
+
+      - name: dim_plans
+        columns:
+          - name: plan_key
+            tests:
+              - unique
+              - not_null
+
+      - name: dim_date
+        columns:
+          - name: date_key
+            tests:
+              - unique
+              - not_null
+
+      - name: dim_people
+        columns:
+          - name: people_key
+            tests:
+              - unique
+              - not_null
+
+      - name: dim_genres
+        columns:
+          - name: genre_key
+            tests:
+              - unique
+              - not_null
+
+      - name: dim_titles
+        columns:
+          - name: title_key
+            tests:
+              - unique
+              - not_null
