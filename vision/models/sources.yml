@@ -97,12 +97,12 @@ sources:
         columns:
           - name: track_id
             tests:
-              - unique        
+              - unique
       - name: Artists
         columns:
           - name: artist_id
             tests:
-              - unique        
+              - unique
       - name: Albums
         columns:
           - name: album_id
@@ -117,30 +117,30 @@ sources:
         columns:
           - name: membership_id
             tests:
-              - unique      
+              - unique
       - name: Songs_Played
         columns:
           - name: track_id
             tests:
-              - unique                                                  
+              - unique
       - name: Playlist_Tracks
         tests:
-        - dbt_utils.unique_combination_of_columns:
-            combination_of_columns:
-              - playlist_id
-              - track_id
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - playlist_id
+                - track_id
       - name: Likes
         tests:
-        - dbt_utils.unique_combination_of_columns:
-            combination_of_columns:
-              - customer_id
-              - track_id
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - customer_id
+                - track_id
       - name: Followers
         tests:
-        - dbt_utils.unique_combination_of_columns:
-            combination_of_columns:
-              - customer_id
-              - artist_id
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - customer_id
+                - artist_id
 
   - name: visionmart
     database: vision
@@ -163,3 +163,58 @@ sources:
             tests:
               - not_null
               - unique
+
+  - name: VISIONBOOKS
+    database: vision
+    schema: VISIONBOOKS
+
+    tables:
+      - name: AUTHORS
+        columns:
+          - name: au_id
+            tests:
+              - unique
+
+      - name: TITLES
+        columns:
+          - name: title_id
+            tests:
+              - unique
+
+      - name: SALES
+        columns:
+          - name: sales_id
+            tests:
+              - unique
+
+      - name: PUBLISHERS
+        columns:
+          - name: pub_id
+            tests:
+              - unique
+
+      - name: DISCOUNTS
+        columns:
+          - name: discount_id
+            tests:
+              - unique
+
+      - name: Reader
+        columns:
+          - name: reader_id
+            tests:
+              - unique
+
+      - name: ReaderSales
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - reader_id
+                - sales_id
+
+      - name: TITLEAUTHORS
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - title_id
+                - au_id

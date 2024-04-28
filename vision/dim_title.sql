@@ -1,15 +1,13 @@
- WITH stg_title AS (
-          SELECT * FROM {{ source('VISIONBOOKS', 'TITLES') }}
-      )
-      SELECT 
-          {{ dbt_utils.generate_surrogate_key(['stg_title.title_id']) }} AS publisherkey, 
-          TITLE_ID,
-          TITLE,
-          PRICE,
-          ADVANCE,
-          ROYALTY,
-          YTD_SALES,
-          NOTES,
-          PUBTIME,
-          PUB_ID
-      FROM stg_title
+with stg_title as (select * from {{ source("VISIONBOOKS", "TITLES") }})
+select
+    {{ dbt_utils.generate_surrogate_key(["stg_title.title_id"]) }} as publisherkey,
+    title_id,
+    title,
+    price,
+    advance,
+    royalty,
+    ytd_sales,
+    notes,
+    pubtime,
+    pub_id
+from stg_title
