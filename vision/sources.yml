@@ -164,58 +164,57 @@ sources:
               - not_null
               - unique
 
-  - name: visionbooks
+  - name: VISIONBOOKS
     database: vision
-    schema: visionbooks
+    schema: VISIONBOOKS
 
     tables:
-      - name: authors
+      - name: AUTHORS
         columns:
           - name: au_id
             tests:
               - unique
 
-      - name: titles
+      - name: TITLES
         columns:
           - name: title_id
             tests:
               - unique
 
-      - name: sales
+      - name: SALES
         columns:
           - name: sales_id
             tests:
               - unique
 
-      - name: publisher
+      - name: PUBLISHERS
         columns:
           - name: pub_id
             tests:
               - unique
 
-      - name: discounts
+      - name: DISCOUNTS
         columns:
           - name: discount_id
             tests:
               - unique
 
-      - name: reader
+      - name: Reader
         columns:
           - name: reader_id
             tests:
               - unique
 
-      - name: readersales
+      - name: ReaderSales
         tests:
           - dbt_utils.unique_combination_of_columns:
               combination_of_columns:
                 - reader_id
                 - sales_id
 
-      - name: titleauthors
+      - name: TITLEAUTHORS
         tests:
           - dbt_utils.unique_combination_of_columns:
               combination_of_columns:
                 - title_id
                 - au_id
-

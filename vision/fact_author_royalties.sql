@@ -8,7 +8,7 @@ stg_authors as
         
     from {{ source('VISIONBOOKS','AUTHORS') }}
 ),
-stg_title as
+stg_title_b as
 (
     select *
        
@@ -18,7 +18,7 @@ stg as (
 select ta.AU_ID,
 sum(t.ROYALTY) as royalty_sum
 from 
-    stg_title t
+    stg_title_b t
 join stg_titleauthors ta on ta.TITLE_ID=t.TITLE_ID
 join stg_authors a on ta.AU_ID=a.AU_ID
 group by ta.AU_ID
