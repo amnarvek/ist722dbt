@@ -1,7 +1,7 @@
 
     
       WITH stg_authors AS (
-          SELECT * FROM {{ source('VISIONBOOKS', 'AUTHORS') }}
+          SELECT * FROM {{ source('visionbooks', 'authors') }}
       )
       SELECT 
           {{ dbt_utils.generate_surrogate_key(['stg_authors.au_id']) }} AS authorkey, 

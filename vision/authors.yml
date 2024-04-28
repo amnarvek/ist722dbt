@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: authors
+    description: Authors Dimension. One row per author
+    columns:
+      - name: au_id
+        description: Dimension Key
+        tests:
+          - not_null
+          - unique
