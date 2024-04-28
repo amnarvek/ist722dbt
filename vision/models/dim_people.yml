@@ -13,7 +13,7 @@ models:
         description: The people's table surrogate key
         tests:
           - not_null
-      - name: people_email
+      - name: people_name
         description: The business / source key of the customer
         tests:
           - not_null

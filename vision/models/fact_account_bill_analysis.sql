@@ -8,7 +8,7 @@ stg_dim_date as (
     select * from {{ source('conformed','DateDimension')}}
 )
 select
-    {{dbt_utils.generate_surrogate_key(['a.ab_id'])}} as fact_account_bill_analysis_id,
+    {{dbt_utils.generate_surrogate_key(['a.ab_id'])}} as fact_account_bill_analysis_key,
     a.ab_account_id as customer_key,
     a.ab_plan_id as plan_key,
     a.ab_date as date_key,
