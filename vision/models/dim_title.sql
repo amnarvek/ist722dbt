@@ -2,7 +2,7 @@
           SELECT * FROM {{ source('VISIONBOOKS', 'TITLES') }}
       )
       SELECT 
-          {{ dbt_utils.generate_surrogate_key(['stg_title.title_id']) }} AS publisherkey, 
+          {{ dbt_utils.generate_surrogate_key(['stg_title.title_id']) }} AS titlekey, 
           TITLE_ID,
           TITLE,
           PRICE,
