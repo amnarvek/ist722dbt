@@ -163,6 +163,174 @@ sources:
             tests:
               - not_null
               - unique
+      - name: creditcards
+        columns:
+          - name: creditcard_id
+            tests:
+              - unique
+            not_null: true
+          - name: creditcard_number
+            not_null: true
+          - name: creditcard_exp_date
+            not_null: true
+      - name: customer_creditcards
+        columns:
+          - name: customer_id
+            not_null: true
+          - name: creditcard_id
+            not_null: true
+      - name: customer_product_reviews
+        columns:
+          - name: customer_id
+            not_null: true
+          - name: product_id
+            not_null: true
+          - name: review_date
+            not_null: true
+          - name: review_stars
+            not_null: true
+          - name: review_id
+            not_null: true
+          
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - customer_id
+                - product_id
+      - name: departments_lookup
+        columns:
+          - name: department_id
+            tests:
+              - unique
+            not_null: true
+      - name: employee_timesheets
+        columns:
+          - name: timesheet_id
+            tests:
+              - unique
+            not_null: true
+          - name: timesheet_payrolldate
+            not_null: true
+          - name: timesheet_hourlyrate
+            not_null: true
+          - name: timesheet_employee_id
+            not_null: true
+          - name: timesheet_hours
+            not_null: true
+      - name: employees
+        columns:
+          - name: employee_id
+            tests:
+              - unique
+            not_null: true
+          - name: employee_ssn
+            tests:
+              - unique
+            not_null: true
+          - name: employee_lastname
+            not_null: true
+          - name: employee_firstname
+            not_null: true
+          - name: employee_jobtitle
+            not_null: true
+          - name: employee_department
+            not_null: true
+          - name: employee_birthdate
+            not_null: true
+          - name: employee_hiredate
+            not_null: true
+          - name: employee_hourlywage
+            not_null: true
+          - name: employee_fulltime
+            not_null: true
+      - name: jobtitles_lookup
+        columns:
+          - name: jobtitle_id
+            tests:
+              - unique
+            not_null: true
+      - name: order_details
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - order_id
+                - product_id
+        columns:
+          - name: order_id
+            not_null: true
+          - name: product_id
+            not_null: true
+          - name: order_qty
+            not_null: true
+      - name: orders
+        columns:
+          - name: order_id
+            tests:
+              - unique
+            not_null: true
+          - name: customer_id
+            not_null: true
+          - name: order_date
+            not_null: true
+          - name: ship_via
+            not_null: true
+          - name: creditcard_id
+            not_null: true
+      - name: products
+        columns:
+          - name: product_id
+            tests:
+              - unique
+            not_null: true
+          - name: product_department
+            not_null: true
+          - name: product_name
+            tests:
+              - unique
+            not_null: true
+          - name: product_retail_price
+            not_null: true
+          - name: product_wholesale_price
+            not_null: true
+          - name: product_is_active
+            not_null: true
+          - name: product_add_date
+            not_null: true
+          - name: product_vendor_id
+            not_null: true
+      - name: shipvia_lookup
+        columns:
+          - name: ship_via
+            tests:
+              - unique
+            not_null: true
+      - name: vendors
+        columns:
+          - name: vendor_id
+            tests:
+              - unique
+            not_null: true
+          - name: vendor_name
+            tests:
+              - unique
+            not_null: true
+          - name: vendor_phone
+            not_null: true
+      - name: account_validity
+        columns:
+        - name: CUSTOMER_ID
+          not_null: true
+          tests:
+            - unique
+            - not_null
+        - name: ACCOUNT_CREATED_DATE
+          not_null: true
+        - name: IS_ACTIVE
+          not_null: true
+
+
+
+
 
   - name: VISIONBOOKS
     database: vision
