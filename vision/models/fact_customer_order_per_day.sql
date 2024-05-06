@@ -19,7 +19,7 @@ stg_orders as (
 )
 
 SELECT 
-{{dbt_utils.generate_surrogate_key(['c.customer_id'])}} as fact_customer_order_per_day,
+{{dbt_utils.generate_surrogate_key(['c.customer_id'])}} as fact_customer_order_per_day_key,
 c.customer_id,
 o.order_date,
 o.order_id,
