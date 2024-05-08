@@ -118,6 +118,11 @@ sources:
           - name: membership_id
             tests:
               - unique
+      - name: Membership_Billing
+        columns:
+          - name: billing_id
+            tests:
+              - unique   
       - name: Songs_Played
         columns:
           - name: track_id
