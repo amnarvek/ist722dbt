@@ -45,7 +45,7 @@ with
             mb.customer_id AS customer_key,
             EXTRACT(month FROM mb.membership_date) AS month,
             EXTRACT(year FROM mb.membership_date) AS year,
-            sum(m.price) AS amount
+            sum(m.price) AS visionmusic_total_amount
         FROM
             stg_music_billing mb
         JOIN 
@@ -54,7 +54,7 @@ with
             customer_key, month, year
     )
 select f.customer_key, f.month, f.year, visionflix_total_amount, visionmart_total_amount,
-    c.amount as visionmusic_total_amount
+    visionmusic_total_amount, 
 from stg_visionflix_fact f
 inner join stg_visionmart_fact m on f.customer_key = m.customer_key
 inner join stg_visionmusic_fact c on f.customer_key = c.customer_key
