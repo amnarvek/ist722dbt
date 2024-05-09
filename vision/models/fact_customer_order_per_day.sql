@@ -17,3 +17,4 @@ join stg_order_details od on o.order_id = od.order_id
 join stg_products p on p.product_id = od.product_id
 join stg_customers c on c.customer_id = o.customer_id
 group by o.order_date, c.customer_id, o.order_id
+order by c.customer_id, o.order_id
