@@ -71,7 +71,9 @@ with
         group by r.reader_id, month, year
     )
 select f.customer_key, f.month, f.year, visionflix_total_amount, visionmart_total_amount,
-    visionmusic_total_amount, visionbooks_total_amount
+    visionmusic_total_amount, visionbooks_total_amount,
+    (visionflix_total_amount + visionmart_total_amount +
+    visionmusic_total_amount + visionbooks_total_amount) as customer_overall_expenditure
 from stg_visionflix_fact f
 inner join stg_visionmart_fact m on f.customer_key = m.customer_key
 inner join stg_visionmusic_fact c on f.customer_key = c.customer_key
