@@ -52,15 +52,35 @@ with
             stg_membership m ON mb.membership_id = m.membership_id
         group by
             customer_key, month, year
+    ),
+
+
+    stg_title as (select * from {{ source("VISIONBOOKS", "TITLES") }}),
+    stg_sales as (select * from {{ source("VISIONBOOKS", "SALES") }}),
+    stg_readers as (select * from {{ source("VISIONBOOKS", "ReaderSales") }}),
+    stg_visionbooks_fact as (
+        select
+            r.reader_id as customer_key,
+            extract(month from s.ord_date) as month,
+            extract(year from s.ord_date) as year,
+            sum(s.qty) as total_quantity,
+            sum(s.qty * t.price) as visionbooks_total_amount
+        from stg_title t
+        join stg_sales s on s.title_id = t.title_id
+        join stg_readers r on r.sales_id = s.sales_id
+        group by r.reader_id, month, year
     )
 select f.customer_key, f.month, f.year, visionflix_total_amount, visionmart_total_amount,
-    visionmusic_total_amount, 
+    visionmusic_total_amount, visionbooks_total_amount,
+    (visionflix_total_amount + visionmart_total_amount +
+    visionmusic_total_amount + visionbooks_total_amount) as customer_overall_expenditure
 from stg_visionflix_fact f
 inner join stg_visionmart_fact m on f.customer_key = m.customer_key
 inner join stg_visionmusic_fact c on f.customer_key = c.customer_key
+inner join stg_visionbooks_fact b on f.customer_key = b.customer_key
 where
     f.month = m.month and f.year = m.year and f.month = c.month and f.year = c.year
--- group by f.customer_key, f.month, f.year
+    and f.month = b.month and f.year = b.year
 order by f.customer_key, f.month, f.year
 
 
